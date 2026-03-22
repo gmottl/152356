@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nutrivida — Meta Kreacje</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: #f4f4f0;
+      color: #1a1a1a;
+      min-height: 100vh;
+    }
+    .topbar {
+      background: #1a3a2a;
+      color: #fff;
+      padding: 16px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .topbar h1 { font-size: 1.2rem; font-weight: 600; letter-spacing: 0.02em; }
+    .topbar .stats { font-size: 0.85rem; opacity: 0.7; }
+    .container { max-width: 960px; margin: 32px auto; padding: 0 24px; }
+
+    /* Creative card */
+    .card {
+      background: #fff;
+      border: 1px solid #e8e8e4;
+      border-radius: 12px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+      padding: 20px;
+      margin-bottom: 20px;
+      display: flex;
+      gap: 24px;
+      align-items: flex-start;
+    }
+
+    /* Thumbnail column */
+    .card-thumb {
+      flex-shrink: 0;
+      position: relative;
+      width: 160px;
+    }
+    .card-thumb img {
+      width: 160px;
+      height: 120px;
+      object-fit: cover;
+      border-radius: 8px;
+      display: block;
+    }
+    .thumb-download {
+      display: block;
+      margin-top: 8px;
+      width: 100%;
+      background: #1a3a2a;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      padding: 7px 0;
+      font-size: 0.82rem;
+      text-align: center;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+    .thumb-download:hover { background: #2d5c44; }
+
+    /* Content column */
+    .card-content { flex: 1; min-width: 0; }
+    .card-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+    .card-title { font-size: 1rem; font-weight: 600; color: #1a1a1a; }
+    .badge {
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 3px 9px;
+      border-radius: 20px;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+    }
+    .badge-infografika { background: #e8f4ee; color: #1a3a2a; }
+    .badge-lifestyle   { background: #fef3e2; color: #7a4d00; }
+
+    /* Copy rows */
+    .copy-row {
+      background: #f8f8f6;
+      border: 1px solid #e8e8e4;
+      border-radius: 8px;
+      padding: 12px 14px;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+    .copy-row:last-child { margin-bottom: 0; }
+    .copy-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: #1a3a2a;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      white-space: nowrap;
+      padding-top: 2px;
+      min-width: 60px;
+    }
+    .copy-text {
+      flex: 1;
+      font-size: 0.9rem;
+      line-height: 1.5;
+      color: #333;
+    }
+    .copy-btn {
+      flex-shrink: 0;
+      background: transparent;
+      border: 1px solid #1a3a2a;
+      color: #1a3a2a;
+      border-radius: 6px;
+      padding: 5px 12px;
+      font-size: 0.8rem;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background 0.15s, color 0.15s;
+    }
+    .copy-btn:hover { background: #1a3a2a; color: #fff; }
+    .copy-btn.copied {
+      background: #2d7a4f;
+      border-color: #2d7a4f;
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <h1>Nutrivida — Meta Kreacje</h1>
+    <span class="stats">4 kreacje · 8 copy</span>
+  </header>
+  <main class="container">
+
+    <!-- ── Creative 1 ── -->
+    <div class="card">
+      <div class="card-thumb">
+        <img src="./Pies - Karma z królikiem - diagram.jpg"
+             alt="Karma z Królikiem — Diagram składników">
+        <a class="thumb-download"
+           href="./Pies - Karma z królikiem - diagram.jpg"
+           download="Nutrivida_Karma_Krolik_Diagram.jpg">↓ Pobierz</a>
+      </div>
+      <div class="card-content">
+        <div class="card-header">
+          <span class="card-title">Karma z Królikiem — Diagram składników</span>
+          <span class="badge badge-infografika">Infografika</span>
+        </div>
+        <div class="copy-row">
+          <span class="copy-label">Wersja A</span>
+          <span class="copy-text">65% mięsa i produktów zwierzęcych. Kurczak 50%, wieprzowina 12%, królik 4% — skład, który rozumiesz. Bez zbóż, bez cukru, bez chemii.</span>
+          <button class="copy-btn" onclick="copyText(this)">📋 Kopiuj</button>
+        </div>
+        <div class="copy-row">
+          <span class="copy-label">Wersja B</span>
+          <span class="copy-text">Twój pies dostaje to, na co zasługuje: prawdziwe mięso z naturalnym bulionem. Królik, kurczak, wieprzowina — i nic zbędnego.</span>
+          <button class="copy-btn" onclick="copyText(this)">📋 Kopiuj</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Creative 2 ── -->
+    <div class="card">
+      <div class="card-thumb">
+        <img src="./Pies - Karma z Jagnięciną - Diagram 2.jpg"
+             alt="Karma z Jagnięciną — Diagram składników">
+        <a class="thumb-download"
+           href="./Pies - Karma z Jagnięciną - Diagram 2.jpg"
+           download="Nutrivida_Karma_Jagniecina_Diagram.jpg">↓ Pobierz</a>
+      </div>
+      <div class="card-content">
+        <div class="card-header">
+          <span class="card-title">Karma z Jagnięciną — Diagram składników</span>
+          <span class="badge badge-infografika">Infografika</span>
+        </div>
+        <div class="copy-row">
+          <span class="copy-label">Wersja A</span>
+          <span class="copy-text">Karma z Jagnięciną: 65% mięsa i podrobów. Skład, który rozumiesz — zero gazów, zero wzdęć, mniejsza kupa. Twój pies przyswaja więcej.</span>
+          <button class="copy-btn" onclick="copyText(this)">📋 Kopiuj</button>
+        </div>
+        <div class="copy-row">
+          <span class="copy-label">Wersja B</span>
+          <span class="copy-text">Twój pupil zasługuje na mięso, które przyswaja. Jagnięcina z naturalnym bulionem — lepsze trawienie od środka, lśniąca sierść na zewnątrz.</span>
+          <button class="copy-btn" onclick="copyText(this)">📋 Kopiuj</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Creative 3 ── -->
+    <div class="card">
+      <div class="card-thumb">
+        <img src="./Pies - kategoria 2.jpg"
+             alt="Wreszcie wiesz, co dajesz psu — Lifestyle A">
+        <a class="thumb-download"
+           href="./Pies - kategoria 2.jpg"
+           download="Nutrivida_Lifestyle_A.jpg">↓ Pobierz</a>
+      </div>
+      <div class="card-content">
+        <div class="card-header">
+          <span class="card-title">Wreszcie wiesz, co dajesz psu — Lifestyle A</span>
+          <span class="badge badge-lifestyle">Lifestyle</span>
+        </div>
+        <div class="copy-row">
+          <span class="copy-label">Wersja A</span>
+          <span class="copy-text">Wreszcie wiesz, co dajesz swojemu psu. Nutrivida: koniec z niejadkiem, lśniąca sierść, więcej energii do zabawy. 4 smaki — znajdź ulubiony.</span>
+          <button class="copy-btn" onclick="copyText(this)">📋 Kopiuj</button>
+        </div>
+        <div class="copy-row">
+          <span class="copy-label">Wersja B</span>
+          <span class="copy-text">Sierść lśni naturalnie. Trawienie działa. Pies chce więcej. To dzieje się, gdy skład ma tylko to, co potrzeba — i nic zbędnego.</span>
+          <button class="copy-btn" onclick="copyText(this)">📋 Kopiuj</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Creative 4 ── -->
+    <div class="card">
+      <div class="card-thumb">
+        <img src="./Pies - kategoria.png"
+             alt="Wreszcie wiesz, co dajesz psu — Lifestyle B">
+        <a class="thumb-download"
+           href="./Pies - kategoria.png"
+           download="Nutrivida_Lifestyle_B.png">↓ Pobierz</a>
+      </div>
+      <div class="card-content">
+        <div class="card-header">
+          <span class="card-title">Wreszcie wiesz, co dajesz psu — Lifestyle B</span>
+          <span class="badge badge-lifestyle">Lifestyle</span>
+        </div>
+        <div class="copy-row">
+          <span class="copy-label">Wersja A</span>
+          <span class="copy-text">Karma, którą zrozumiesz. Mięso, które Twój pies pokocha. Nutrivida — koniec z niejadkiem, lepsze trawienie i energia do zabawy.</span>
+          <button class="copy-btn" onclick="copyText(this)">📋 Kopiuj</button>
+        </div>
+        <div class="copy-row">
+          <span class="copy-label">Wersja B</span>
+          <span class="copy-text">Twój pies zasługuje na jedzenie z prawdziwego mięsa. Nutrivida: 65% mięsa i podrobów, naturalny bulion, składy bez tajemnic.</span>
+          <button class="copy-btn" onclick="copyText(this)">📋 Kopiuj</button>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <script>
+    function copyText(btn) {
+      const copyRow = btn.closest('.copy-row');
+      const text = copyRow.querySelector('.copy-text').textContent.trim();
+
+      navigator.clipboard.writeText(text).then(() => {
+        btn.textContent = '✓ Skopiowano';
+        btn.classList.add('copied');
+        setTimeout(() => {
+          btn.textContent = '📋 Kopiuj';
+          btn.classList.remove('copied');
+        }, 1800);
+      }).catch(() => {
+        // Fallback for file:// protocol
+        const ta = document.createElement('textarea');
+        ta.value = text;
+        ta.style.position = 'fixed';
+        ta.style.opacity = '0';
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        document.body.removeChild(ta);
+        btn.textContent = '✓ Skopiowano';
+        btn.classList.add('copied');
+        setTimeout(() => {
+          btn.textContent = '📋 Kopiuj';
+          btn.classList.remove('copied');
+        }, 1800);
+      });
+    }
+  </script>
+</body>
+</html>
